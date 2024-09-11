@@ -67,23 +67,25 @@ def make_layers(cfg: List[Union[str, int]], batch_norm: bool = False) -> nn.Sequ
 ```json
 {
   "model_name" : "resnet50",  //model name, plz choose in {resnet50, resnet18,vgg16,alexnet}
-  "algorithm" : "fedavg",   //al name, plz choose in {fedavg,fedsgd,fedprox}
+  "algorithm" : "fedavg",   //algorthm name, plz choose in {fedavg,fedsgd,fedprox}
   "no_models" : 10,  //number of clients
-  "type" : "mnist",
-  "global_epochs" : 40, 
-  "local_epochs" : 1,
+  "type" : "mnist", //type of dataset
+  "global_epochs" : 40, //total epochs 
+  "local_epochs" : 1,   //local epochs for each client
   "batch_size" : 32, //dont be greater than 32 if ur PC is not that strong!
-  "lr" : 0.001,
-  "momentum" : 0.0001,
-  "lambda" : 0.1,
-  "poison_client": 3, //client num that will poison
-  "poison_times": 10,//how many time that each poison client will do the harm!
-  "krum": 0,  //weather krum or not
+  "lr" : 0.001,   //parameter
+  "momentum" : 0.0001,  //parameter
+  "lambda" : 0.1,   //parameter
+  "poison_client": 3, //the amount of clients that will poison the model by sending the whole model back to server instead of the difference bewteen the global model and the current client's trained model
+  "poison_times": 10,// how many times of poison epochs, '10' means every 4 epochs the chosen clients will poison.
+  "krum": 0,  //weather use krum or not
   "krum_client": 3,  //how many rats will the krum eliminate
   "DEVICE": "cuda",  //dont have a gpu? change it to cpu
   "download_dataset": 0, //download mnist/cifar or not?
   "num_classes": 11,  //the out_features
-  "mu_for_fedprox" : 0.01 
+  "mu_for_fedprox" : 0.01  //parameter for fedprox
+  "q":0,  //parameter for inference attack defence, '0' means not to use this defence strategy, if q !=0, then each layer of the model(resnet50 alexnet vgg16) will be encrypted as followed: [m,n,s]→[m*q+b,n*q+b,s*q+b]
+  "b":0.002 //parameter for inference attack defence
 }
 
 
