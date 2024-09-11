@@ -1,0 +1,24 @@
+{
+  "model_name" : "resnet50",
+  "algorithm" : "fedavg",
+  "no_models" : 10,
+  "type" : "mnist",
+  "global_epochs" : 40,
+  "local_epochs" : 1,
+  "batch_size" : 32,
+  "lr" : 0.001,
+  "momentum" : 0.0001,
+  "lambda" : 0.1,
+  "poison_client": 0,
+  "poison_times": 10,
+  "krum": 0,
+  "krum_client": 3,
+  "DEVICE": "cuda",
+  "download_dataset": 0,
+  "num_classes": 11,
+  "mu_for_fedprox" : 0.01,
+  "q":0,
+  "b":0.002
+}
+
+
